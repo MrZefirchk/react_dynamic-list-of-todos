@@ -1,1 +1,5 @@
-export type OptionType = 'all' | 'active' | 'completed';
+export enum OptionType {
+  All = 'all',
+  Active = 'active',
+  Completed = 'completed',
+}

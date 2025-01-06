@@ -23,9 +23,11 @@ export const TodoFilter: React.FC<Props> = React.memo(
                 setFilterField(event.target.value as OptionType)
               }
             >
-              <option value="all">All</option>
-              <option value="active">Active</option>
-              <option value="completed">Completed</option>
+              {Object.values(OptionType).map(value => (
+                <option value={value} key={value}>
+                  {value.charAt(0).toUpperCase() + value.slice(1)}
+                </option>
+              ))}
             </select>
           </span>
         </p>

@@ -11,14 +11,14 @@ type Props = {
 
 export const TodoModal: React.FC<Props> = React.memo(({ todo, onClose }) => {
   const [user, setUser] = useState<User | null>(null);
-  const [loading, setLoaing] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    setLoaing(true);
+    setLoading(true);
     getUser(todo.userId)
       .then(setUser)
       .catch(() => setUser(null))
-      .finally(() => setLoaing(false));
+      .finally(() => setLoading(false));
   }, [todo.userId]);
 
   return (

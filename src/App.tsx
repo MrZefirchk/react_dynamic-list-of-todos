@@ -14,16 +14,16 @@ import { Loader } from './components/Loader';
 export const App: React.FC = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
   const [filteredTodos, setFilteredTodos] = useState<Todo[]>([]);
-  const [loading, setLoaing] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [selectedTodo, setSelectedTodo] = useState<Todo | null>(null);
   const [query, setQuery] = useState('');
-  const [filterField, setFilterField] = useState<OptionType>('all');
+  const [filterField, setFilterField] = useState<OptionType>(OptionType.All);
 
   useEffect(() => {
-    setLoaing(true);
+    setLoading(true);
     getTodos()
       .then(setTodos)
-      .finally(() => setLoaing(false));
+      .finally(() => setLoading(false));
   }, []);
 
   const handleCloseTodo = () => {
@@ -33,9 +33,9 @@ export const App: React.FC = () => {
   useEffect(() => {
     const newFilteredTodos = todos.filter(todo => {
       const matchesField =
-        filterField === 'all' ||
-        (filterField === 'completed' && todo.completed) ||
-        (filterField === 'active' && !todo.completed);
+        filterField === OptionType.All ||
+        (filterField === OptionType.Completed && todo.completed) ||
+        (filterField === OptionType.Active && !todo.completed);
 
       const matchesQuery = todo.title
         .toLowerCase()
